@@ -1,0 +1,4 @@
+earllumosad.202400459@gmail.com,2024-00459,BSIT,earlearl11
+admin,121,admin,admin123
+earl,2,CCS,earl123
+test,12,BSA,test
