@@ -5,16 +5,9 @@
 package finals.proj;
 
 import java.awt.Image;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+
 
 
 public class Events extends javax.swing.JFrame {
@@ -125,7 +118,7 @@ public class Events extends javax.swing.JFrame {
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 740, 70, 30));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jButton4.setForeground(new java.awt.Color(0, 0, 0));
         jButton4.setText("Submit");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -133,7 +126,7 @@ public class Events extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, 100, 30));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 380, 140, 40));
 
         wallp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         wallp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/finals/proj/dasss2.PNG"))); // NOI18N

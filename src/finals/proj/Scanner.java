@@ -5,6 +5,9 @@
 
 package finals.proj;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author nigga
@@ -15,6 +18,8 @@ public class Scanner extends javax.swing.JFrame {
 
     /** Creates new form Scanner */
     public Scanner() {
+        Image spc = new ImageIcon(this.getClass().getResource("spc_logo.png")).getImage();
+        this.setIconImage(spc);
         initComponents();
     }
 
