@@ -19,6 +19,9 @@ public class Dashboard extends javax.swing.JFrame {
     public Dashboard() {
         initComponents();
         setResizable(false);
+        loadEventsFromDatabase();
+        
+        
    
         Image spc = new ImageIcon(this.getClass().getResource("spc_logo.png")).getImage();
         this.setIconImage(spc);
@@ -68,6 +71,11 @@ public class Dashboard extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDashboardMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblDashboard);
@@ -137,6 +145,34 @@ public class Dashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
    
+    private void loadEventsFromDatabase() {
+    DefaultTableModel model = (DefaultTableModel) tblDashboard.getModel();
+    model.setRowCount(0); // clear table first
+
+    try {
+        java.sql.Connection conn = DBConnection.getEventsConnection();
+        java.sql.Statement stmt = conn.createStatement();
+        java.sql.ResultSet rs = stmt.executeQuery("SELECT * FROM events");
+
+        while (rs.next()) {
+            model.addRow(new Object[]{
+                rs.getString("title"),
+                rs.getString("date"),
+                rs.getString("time"),
+                rs.getString("location")
+            });
+        }
+
+        rs.close();
+        stmt.close();
+        conn.close();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+    
     public void addEvent(String title, String date, String time, String location) {
     DefaultTableModel model = (DefaultTableModel) tblDashboard.getModel();
     model.addRow(new Object[]{title, date, time, location});
@@ -165,6 +201,14 @@ public class Dashboard extends javax.swing.JFrame {
           list.setLocationRelativeTo(null);
           this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void tblDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDashboardMouseClicked
+      Students list = new Students();
+      list.setVisible(true);
+      list.pack();
+      list.setLocationRelativeTo(null);
+      this.dispose();
+    }//GEN-LAST:event_tblDashboardMouseClicked
 
    
     public static void main(String args[]) {
@@ -200,4 +244,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblDashboard;
     // End of variables declaration//GEN-END:variables
+
+   
 }

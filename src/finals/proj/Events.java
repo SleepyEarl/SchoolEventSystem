@@ -173,25 +173,44 @@ public class Events extends javax.swing.JFrame {
     }//GEN-LAST:event_TitleActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
- 
+                                        
     String title = Title.getText();
     String date = Date.getText();
     String time = Time.getText();
     String location = Location.getText();
-    JOptionPane.showMessageDialog(this, "Events Successfully Added");
 
     if (title.isEmpty() || date.isEmpty() || time.isEmpty() || location.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Please fill out all fields.", "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Please fill all fields.");
         return;
     }
 
-    Dashboard dashboard = new Dashboard(); 
-    dashboard.addEvent(title, date, time, location);
-    dashboard.setVisible(true);
-    dashboard.pack();
-    dashboard.setLocationRelativeTo(null);
+    try {
+        java.sql.Connection conn = DBConnection.getEventsConnection();
+        String sql = "INSERT INTO events (title, date, time, location) VALUES (?, ?, ?, ?)";
+        java.sql.PreparedStatement pst = conn.prepareStatement(sql);
 
-    this.dispose();
+        pst.setString(1, title);
+        pst.setString(2, date);
+        pst.setString(3, time);
+        pst.setString(4, location);
+
+        pst.executeUpdate();
+        pst.close();
+        conn.close();
+
+        JOptionPane.showMessageDialog(this, "Event saved successfully!");
+
+        // Go back to Dashboard
+        Dashboard dash = new Dashboard();
+        dash.setVisible(true);
+        dash.pack();
+        dash.setLocationRelativeTo(null);
+        this.dispose();
+
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error saving event.");
+    }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
