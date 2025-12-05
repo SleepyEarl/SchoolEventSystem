@@ -1,5 +1,6 @@
 package finals.proj;
 
+import static finals.proj.DBConnection.getConnection;
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,6 +34,9 @@ public class AddStudent extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Student");
+
+        // 🔴 Set background to maroon
+        getContentPane().setBackground(new java.awt.Color(128, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,6 +127,7 @@ public class AddStudent extends javax.swing.JFrame {
             return false;
         }
     }
+    
 
 
     private javax.swing.JButton btnSave;

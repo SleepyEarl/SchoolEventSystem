@@ -1,7 +1,7 @@
 package finals.proj;
 
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JFrame; // Ensure JFrame is imported
+import javax.swing.JFrame; 
 import javax.swing.JOptionPane;
 
 public class Students extends JFrame {
@@ -9,8 +9,7 @@ public class Students extends JFrame {
     public Students() {
         initComponents();
         setResizable(false);
-        setLocationRelativeTo(null); // Center the main frame
-
+        setLocationRelativeTo(null); 
     }
 
     @SuppressWarnings("unchecked")
@@ -23,6 +22,9 @@ public class Students extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Student List");
+
+        // 🔴 Set background to maroon
+        getContentPane().setBackground(new java.awt.Color(128, 0, 0));
 
         tblStudents.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {},
@@ -40,18 +42,13 @@ public class Students extends JFrame {
             }
         });
 
-        // Add student button
+        // ADD STUDENT BUTTON
         btnAddStudent.setText("Add Student");
         btnAddStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                // Calls the method defined at the bottom of the class
                 btnAddStudentActionPerformed(evt);
             }
-            
-            
         });
-        
-        
 
         // ---- Layout ----
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -87,19 +84,13 @@ public class Students extends JFrame {
         pack();
     }
 
-    // --- PUBLIC METHOD FOR ADDING ROW (Called by AddStudentForm) ---
-
-    /**
-     * Public method for AddStudentForm to call to update the table data.
-     */
+    // --- PUBLIC METHOD FOR ADDING A ROW ---
     public void addStudentRow(String name, String course, String year) {
         DefaultTableModel model = (DefaultTableModel) tblStudents.getModel();
         model.addRow(new Object[]{name, course, year});
     }
 
-
     // --- BUTTON ACTIONS ---
-
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {
          Dashboard dash = new Dashboard(); 
          dash.setVisible(true);
@@ -109,19 +100,15 @@ public class Students extends JFrame {
     }
 
     private void btnAddStudentActionPerformed(java.awt.event.ActionEvent evt) {
-        // FIX: The 'this' keyword now correctly refers to the 'Students' JFrame.
         AddStudent form = new AddStudent(this); 
         form.setVisible(true);
         form.pack();
-        form.setLocationRelativeTo(this); // Center the new form relative to the main frame
+        form.setLocationRelativeTo(this);
     }
-    
 
-
-    // Variables declaration - do not modify
+    // Variables declaration
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnAddStudent;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblStudents;
-    // End of variables declaration
 }
